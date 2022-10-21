@@ -23,8 +23,8 @@
   content: $content;
 }
 
-@mixin flex($isFlex:null, $flexBasis:null, $isHCenter:null, $isVCenter:null, $isVDirection:null, $isWrap:null, $flexOrder:null) {
-  @if $isFlex {
+@mixin flex($flex:null, $basis:null, $justify:null, $align:null, $direction:null, $wrap:null, $flexOrder:null) {
+  @if $flex {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -32,32 +32,45 @@
     display: flex;
   }
 
-  @if $isVCenter {
-    -webkit-box-align: $isVCenter;
-    -moz-box-align: $isVCenter;
-    -ms-flex-align: $isVCenter;
-    -webkit-align-items: $isVCenter;
-    align-items: $isVCenter;
+  @if $align {
+    -webkit-box-align:$align;
+    -moz-box-align: $align;
+    -ms-flex-align: $align;
+    -webkit-align-items: $align;
+    align-items: $align;
   }
 
-  @if $flexBasis {
-    flex-basis: $flexBasis;
+  @if $basis {
+    -ms-flex-preferred-size:$basis;
+    flex-basis:$basis;
   }
 
-  @if $isVDirection {
-    flex-direction: $isVDirection;
+  @if $direction {
+    -webkit-flex-direction: $direction;
+    -moz-flex-direction:$direction;
+    -ms-flex-direction:$direction;
+    -o-flex-direction: $direction;
+    @if $direction == row {
+      -webkit-box-orient: horizontal; 
+    }
+    @else {
+      -webkit-box-orient: vertical; 
+    }
+    flex-direction: $direction;
   }
 
-  @if $isWrap {
-    -webkit-flex-wrap: $isWrap;
-    -moz-flex-wrap: $isWrap;
-    -ms-flex-wrap: $isWrap;
-    -o-flex-wrap: $isWrap;
-    flex-wrap: $isWrap;
+  @if $wrap {
+    -webkit-flex-wrap: $wrap;
+    -moz-flex-wrap: $wrap;
+    -ms-flex-wrap: $wrap;
+    -o-flex-wrap: $wrap;
+    flex-wrap: $wrap;
   }
 
-  @if $isHCenter {
-    justify-content: $isHCenter;
+  @if $justify {
+    -webkit-justify-content:  $justify;
+    -ms-flex-pack:  $justify;
+    justify-content:  $justify;
   }
 
   @if $flexOrder {
@@ -79,7 +92,7 @@
   }
 }
 
-@mixin boxModel($width:null, $height:null) {
+@mixin contentSize($width:null, $height:null) {
   @if $width {
     width: $width;
   }
@@ -173,7 +186,7 @@
   #{$propert}: $value;
 }
 
-@mixin transition($property, $time, $func:null) {
+@mixin transition($property:null, $time:null, $func:null) {
   -webkit-transition: $property $time $func;
   -moz-transition: $property $time $func;
   -ms-transition: $property $time $func;
