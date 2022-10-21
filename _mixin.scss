@@ -235,10 +235,8 @@
   background: $bgcolor;
   color: $color;
 
-  @include reverseResponsive($device:1024px) {
-    @media only screen and (min-width: $device) {
+  @include reverseResponsive(1024px) {
       background: $color;
       color: $bgcolor;
-    }
   }
 }
