@@ -236,7 +236,9 @@
   color: $color;
 
   @include reverseResponsive(1024px) {
+     &:hover {
       background: $color;
       color: $bgcolor;
+     }
   }
 }
